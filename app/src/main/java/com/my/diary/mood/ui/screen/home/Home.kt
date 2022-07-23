@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,35 +17,46 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import com.my.diary.mood.R
 import com.my.diary.mood.data.MoodType
+import com.my.diary.mood.data.mapToViewData
 import com.my.diary.mood.ui.screen.home.HomeViewModel
+import com.my.diary.mood.ui.screen.home.MoodItemView
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun Home() {
     val viewModel: HomeViewModel = getViewModel()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(all = 16.dp),
+            .padding(
+                vertical = 32.dp,
+                horizontal = 16.dp
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(R.string.home_what_is_your_mood),
+            text = stringResource(R.string.home_what_do_you_feel),
             fontFamily = FontFamily.Default,
             style = MaterialTheme.typography.h6
         )
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(all = 16.dp)
-                .scrollable(
+                .padding(top = 24.dp, bottom = 40.dp)
+                .verticalScroll(
                     state = rememberScrollState(),
-                    orientation = Orientation.Vertical
                 )
         ) {
-            MoodType.values().forEach {
-
-            }
+            MoodType.values()
+                .map { it.mapToViewData() }
+                .forEach { data ->
+                    MoodItemView(
+                        modifier = Modifier.padding(all = 8.dp),
+                        data = data,
+                        onSave = { viewModel.addMoodItem(it) }
+                    )
+                }
         }
     }
 

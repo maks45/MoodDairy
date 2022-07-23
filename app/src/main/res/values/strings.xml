@@ -3,6 +3,15 @@
     <!--Home Screen-->
     <string name="home_title">Home</string>
     <string name="home_what_is_your_mood">What is your mood right now?</string>
+    <string name="home_what_do_you_feel">What do you feel?</string>
+    <string name="home_mood_feel">Feel %1$s</string>
+    <string name="home_mood_happy">happy</string>
+    <string name="home_mood_exciting">exciting</string>
+    <string name="home_mood_sad">sad</string>
+    <string name="home_mood_nothing">nothing</string>
+    <string name="home_mood_depressed">depressed</string>
+    <string name="home_mood_anxiety">anxiety</string>
+    <string name="home_mood_anger">anger</string>
     <!--Home History-->
     <string name="history_title">History</string>
     <!--Home Settings-->
