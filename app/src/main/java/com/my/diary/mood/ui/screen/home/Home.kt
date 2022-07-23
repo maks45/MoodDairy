@@ -1,7 +1,5 @@
 package com.my.diary.mood.ui.screen
 
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,6 +8,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -25,7 +25,9 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun Home() {
     val viewModel: HomeViewModel = getViewModel()
-
+    val expandedItem = remember {
+        mutableStateOf(-1)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -50,11 +52,17 @@ fun Home() {
         ) {
             MoodType.values()
                 .map { it.mapToViewData() }
-                .forEach { data ->
+                .forEachIndexed { index, data ->
                     MoodItemView(
                         modifier = Modifier.padding(all = 8.dp),
                         data = data,
-                        onSave = { viewModel.addMoodItem(it) }
+                        expanded = index == expandedItem.value,
+                        onSave = { viewModel.addMoodItem(it) },
+                        onItemClick = {
+                            expandedItem.value = index.takeIf {
+                                it != expandedItem.value
+                            } ?: -1
+                        }
                     )
                 }
         }

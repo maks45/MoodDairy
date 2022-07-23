@@ -4,6 +4,7 @@
     <string name="home_title">Home</string>
     <string name="home_what_is_your_mood">What is your mood right now?</string>
     <string name="home_what_do_you_feel">What do you feel?</string>
+    <string name="home_describe">Describe what make you feel so:</string>
     <string name="home_mood_feel">Feel %1$s</string>
     <string name="home_mood_happy">happy</string>
     <string name="home_mood_exciting">exciting</string>
