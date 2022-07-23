@@ -6,6 +6,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val KoinPersistenceModule = module {
+
     single {
         Room.databaseBuilder(
             androidContext(),
@@ -14,7 +15,7 @@ val KoinPersistenceModule = module {
         ).build()
     }
 
-    single {
+    factory {
         val db: DairyDatabase = get()
         db.getMoodItemDao()
     }

@@ -14,11 +14,13 @@ class DiaryApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@DiaryApp)
-            modules(
-                KoinPersistenceModule,
-                KoinHomeModule,
-                KoinHistoryModule,
-                KoinSettingsModule
+            mutableListOf(
+                modules(
+                    KoinPersistenceModule,
+                    KoinHomeModule,
+                    KoinHistoryModule,
+                    KoinSettingsModule
+                )
             )
         }
     }

@@ -2,6 +2,7 @@
     <string name="app_name">Mood Diary</string>
     <!--Home Screen-->
     <string name="home_title">Home</string>
+    <string name="home_what_is_your_mood">What is your mood right now?</string>
     <!--Home History-->
     <string name="history_title">History</string>
     <!--Home Settings-->

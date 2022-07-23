@@ -8,7 +8,7 @@ class MoodItemRepository(
     private val dao: MoodItemDao
 ) {
 
-    fun getAllMoodItems() {
+    suspend fun getAllMoodItems() {
         dao.getAll().map {
             MoodItem(
                 description = it.description,
@@ -19,7 +19,7 @@ class MoodItemRepository(
         }
     }
 
-    fun addMoodItem(moodItem: MoodItem) {
+    suspend fun addMoodItem(moodItem: MoodItem) {
         dao.add(
             MoodItemEntity(
                 description = moodItem.description,
