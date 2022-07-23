@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Mood Diary</string>
+    <!--Home Screen-->
+    <string name="home_title">Home</string>
+    <!--Home History-->
+    <string name="history_title">History</string>
+    <!--Home Settings-->
+    <string name="settings_title">Settings</string>
+</resources>
