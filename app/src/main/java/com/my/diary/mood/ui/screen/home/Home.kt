@@ -1,9 +1,11 @@
 package com.my.diary.mood.ui.screen
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -13,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import com.my.diary.mood.R
+import com.my.diary.mood.data.MoodType
 import com.my.diary.mood.ui.screen.home.HomeViewModel
 import org.koin.androidx.compose.getViewModel
 
@@ -30,8 +33,19 @@ fun Home() {
             fontFamily = FontFamily.Default,
             style = MaterialTheme.typography.h6
         )
-        Box(modifier = Modifier.weight(1f))
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(all = 16.dp)
+                .scrollable(
+                    state = rememberScrollState(),
+                    orientation = Orientation.Vertical
+                )
+        ) {
+            MoodType.values().forEach {
 
+            }
+        }
     }
 
 }
