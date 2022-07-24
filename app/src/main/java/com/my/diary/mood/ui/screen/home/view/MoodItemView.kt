@@ -18,6 +18,7 @@ import com.my.diary.mood.R
 import com.my.diary.mood.ui.screen.home.data.MoodItemData
 import com.my.diary.mood.ui.screen.home.data.MoodItemViewData
 import com.my.diary.mood.ui.screen.home.data.mapToMoodType
+import com.my.diary.mood.ui.screen.home.view.RateView
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -60,6 +61,7 @@ fun MoodItemView(
                     }
                 )
                 Row(modifier = Modifier.padding(top = 16.dp)) {
+                    RateView(onRateChange = {})
                     Spacer(
                         modifier = Modifier
                             .weight(1f)
