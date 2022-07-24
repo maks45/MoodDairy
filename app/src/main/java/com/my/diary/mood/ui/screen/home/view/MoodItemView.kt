@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
@@ -33,10 +34,10 @@ fun MoodItemView(
         mutableStateOf("")
     }
     val rate = remember {
-        mutableStateOf(4)
+        mutableStateOf(0)
     }
     val saveButtonActive = derivedStateOf {
-        rate.value >= 0 && description.value.isNotBlank()
+        rate.value > 0 && description.value.isNotBlank()
     }
     Box(modifier = modifier) {
         if (expanded) {
@@ -60,8 +61,21 @@ fun MoodItemView(
                         description.value = it
                     }
                 )
-                Row(modifier = Modifier.padding(top = 16.dp)) {
-                    RateView(onRateChange = {})
+                Row(
+                    modifier = Modifier.padding(top = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Text(
+                            text = stringResource(id = R.string.home_rate_feeling),
+                            style = MaterialTheme.typography.subtitle2
+                        )
+                        RateView(
+                            modifier = Modifier.padding(top = 8.dp),
+                            onRateChange = {
+                                rate.value = it
+                            })
+                    }
                     Spacer(
                         modifier = Modifier
                             .weight(1f)
@@ -76,6 +90,9 @@ fun MoodItemView(
                                         type = data.mapToMoodType()
                                     )
                                     onSave.invoke(item)
+                                    rate.value = 0
+                                    description.value = ""
+                                    onItemClick.invoke()
                                 },
                             painter = painterResource(id = R.drawable.ic_baseline_check_24),
                             contentDescription = "save button"

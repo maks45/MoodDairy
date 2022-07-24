@@ -23,7 +23,7 @@ fun RateView(
     @DrawableRes rateIcon: Int = R.drawable.ic_star_mask,
     rateColor: Color = Color.Cyan,
     onRateChange: (Int) -> Unit,
-    rateIconSize: Int = 20,
+    rateIconSize: Int = 25,
     rateRange: Int = 5
 ) {
     val width = (rateIconSize * rateRange).dp
@@ -41,9 +41,10 @@ fun RateView(
         }
         .pointerInput(Unit) {
             detectTapGestures { offset ->
-                currentRate.value =
-                    ((offset.x / widgetWidth.value) * rateRange)
-                        .roundToInt() / rateRange.toFloat()
+                val rate = ((offset.x / widgetWidth.value) * rateRange)
+                    .roundToInt()
+                onRateChange.invoke(rate)
+                currentRate.value = rate / rateRange.toFloat()
             }
         }) {
         Row {
